@@ -1,3 +1,6 @@
+// Mirror note: a test that reaches the monorepo's servers/ directory, two levels up
+// from test/, is skipped here. In a mirror that path lands outside the repository;
+// the sibling servers it wants are only side by side in the monorepo.
 // D-R14: invoice_create must not bill a EUR line under a USD heading.
 // D-R15: "today" is the LOCAL calendar date in invoice, expense-tracker and time-tracker.
 import test from "node:test";
@@ -106,9 +109,9 @@ test("D-R14: agreeing item currencies are accepted, and set the invoice currency
   assert.match(ok2.text, /"currency": "GBP"/);
 });
 
-test("D-R15: invoice, expense-tracker and time-tracker agree on today for a fixed TZ", () => {
+test.skip("D-R15: invoice, expense-tracker and time-tracker agree on today for a fixed TZ", () => {
   const script = `
-    const inv = await import(${JSON.stringify(join(SERVERS, "invoice", "dist", "money.js"))});
+    const inv = await import(${JSON.stringify(join(here, "..", "dist", "money.js"))});
     const exp = await import(${JSON.stringify(join(SERVERS, "expense-tracker", "dist", "money.js"))});
     const tt  = await import(${JSON.stringify(join(SERVERS, "time-tracker", "dist", "day.js"))});
     const d = new Date();
@@ -138,7 +141,7 @@ test("D-R15: invoice, expense-tracker and time-tracker agree on today for a fixe
 
 test("D-R15: an invoice issued in a positive-offset zone carries the local date", () => {
   const script = `
-    const inv = await import(${JSON.stringify(join(SERVERS, "invoice", "dist", "money.js"))});
+    const inv = await import(${JSON.stringify(join(here, "..", "dist", "money.js"))});
     process.stdout.write(inv.isoDate(new Date("2026-09-02T23:36:00Z")));
   `;
   const bangkok = execFileSync(process.execPath, ["--input-type=module", "-e", script], { env: { ...process.env, TZ: "Asia/Bangkok" }, encoding: "utf8" });

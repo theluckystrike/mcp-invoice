@@ -1,3 +1,6 @@
+// Mirror note: a test that reaches the monorepo's servers/ directory, two levels up
+// from test/, is skipped here. In a mirror that path lands outside the repository;
+// the sibling servers it wants are only side by side in the monorepo.
 // D-R60: business_set names the servers that read the shared profile. That list must be
 // derived from the source, not hand-typed, so it cannot silently drift as servers are added
 // or removed. This test re-runs the same grep and fails if servers/invoice/src/index.ts's
@@ -36,7 +39,7 @@ function dirContainsReadSharedProfile(dir) {
   return false;
 }
 
-test("D-R60: PROFILE_READERS matches every server that actually imports readSharedProfile", () => {
+test.skip("D-R60: PROFILE_READERS matches every server that actually imports readSharedProfile", () => {
   const src = readFileSync(INDEX_TS, "utf8");
   const m = /export const PROFILE_READERS = \[([\s\S]*?)\];/.exec(src);
   assert.ok(m, "PROFILE_READERS constant not found in servers/invoice/src/index.ts");

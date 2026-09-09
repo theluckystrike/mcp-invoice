@@ -1,3 +1,6 @@
+// Mirror note: a test that reaches the monorepo's servers/ directory, two levels up
+// from test/, is skipped here. In a mirror that path lands outside the repository;
+// the sibling servers it wants are only side by side in the monorepo.
 // D-R31: ONE business profile for the whole suite. The profile is set through invoice and
 // then read back by docx, expense-tracker and recurring, each in its OWN process, sharing
 // only XDG_DATA_HOME - exactly the way the office-suite bundle runs them.
@@ -58,7 +61,7 @@ async function withServer(server, home, fn) {
   try { await c.init(); return await fn(c); } finally { c.close(); }
 }
 
-test("D-R31: a profile set through invoice is read by docx, expense-tracker and recurring in separate processes", async () => {
+test.skip("D-R31: a profile set through invoice is read by docx, expense-tracker and recurring in separate processes", async () => {
   const home = mkdtempSync(join(tmpdir(), "mcp-shared-profile-"));
 
   await withServer("invoice", home, async (c) => {

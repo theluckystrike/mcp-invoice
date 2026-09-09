@@ -77,7 +77,7 @@ async function init(c) {
   return r.result;
 }
 
-test.skip("stdio: initialize, tools/list, full invoice lifecycle, PDF", async (t) => {
+test("stdio: initialize, tools/list, full invoice lifecycle, PDF", async (t) => {
   const c = client();
   t.after(() => c.close());
 
