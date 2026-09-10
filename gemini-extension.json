@@ -1,0 +1,22 @@
+{
+  "name": "mcp-invoice",
+  "version": "0.21.0",
+  "description": "MCP server for invoice generation: an invoice generator that can generate a numbered PDF invoice with VAT for your clients. Numbered invoices with tax lines, rendered to a professional PDF.",
+  "settings": [
+    {
+      "name": "mcp.zovo.one token",
+      "description": "A free anonymous token from https://mcp.zovo.one/mcp/token, or your Pro key. One token is one data space, and it is refreshed for another 30 days on every write.",
+      "envVar": "ZOVO_MCP_TOKEN",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "invoice": {
+      "httpUrl": "https://mcp.zovo.one/mcp/invoice",
+      "headers": {
+        "Authorization": "Bearer ${ZOVO_MCP_TOKEN}"
+      },
+      "description": "Numbered invoices with tax lines, rendered to a professional PDF."
+    }
+  }
+}
