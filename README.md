@@ -2,7 +2,7 @@
 
 <!-- mirror-seo:start -->
 
-**MCP server for invoice generation, a PDF invoice generator with VAT and sequential numbering.** Numbered invoices with tax lines, rendered to a professional PDF.
+**MCP server for invoice generation: an invoice generator that can generate a numbered PDF invoice with VAT for your clients.** Numbered invoices with tax lines, rendered to a professional PDF.
 
 Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
 
