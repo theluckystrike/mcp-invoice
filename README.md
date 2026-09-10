@@ -1,13 +1,45 @@
 # mcp-invoice
 
+<!-- mirror-seo:start -->
+
+**MCP server for invoice generation, a PDF invoice generator with VAT and sequential numbering.** Numbered invoices with tax lines, rendered to a professional PDF.
+
+Works with Claude Desktop, Claude Code, Cursor and any Model Context Protocol client. Runs on your own machine, or hosted with no install.
+
+## Install
+
+**Hosted, nothing to install.** Point an MCP client at `https://mcp.zovo.one/mcp/invoice` over streamable-http and send `Authorization: Bearer <token>`, where the token is a Pro key or a free anonymous one from <https://mcp.zovo.one/mcp/token>.
+
+**Claude Desktop, one click.** Download `invoice.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it.
+
+**From source.** The mirror is self-contained: every `@theluckystrike/*` dependency is vendored, so a fresh clone builds with no extra setup.
+
+```sh
+git clone https://github.com/theluckystrike/mcp-invoice.git
+cd mcp-invoice
+npm install && npm run build
+```
+
+Then point your client at the built entry point:
+
+```json
+{
+  "mcpServers": {
+    "invoice": {
+      "command": "node",
+      "args": ["/absolute/path/to/mcp-invoice/dist/index.js"]
+    }
+  }
+}
+```
+
+> `@theluckystrike/mcp-invoice` is **not published on npm yet**, so an `npx -y @theluckystrike/mcp-invoice` command will fail. The three paths above are the working ones and each is exercised by CI.
+
 ![invoice demo](https://raw.githubusercontent.com/theluckystrike/mcp-servers/main/assets/demo-invoice.gif)
-
-**One-click install:** download `invoice.mcpb` from the [latest release](https://github.com/theluckystrike/mcp-servers/releases/latest) and double-click it in Claude Desktop.
-
-**Hosted endpoint (no install):** `https://mcp.zovo.one/mcp/invoice` (streamable-http; send `Authorization: Bearer <Pro key or anonymous token from https://mcp.zovo.one/mcp/token>`).
 
 Read-only mirror of [mcp-servers/servers/invoice](https://github.com/theluckystrike/mcp-servers/tree/main/servers/invoice). See [MIRROR.md](MIRROR.md).
 
+<!-- mirror-seo:end -->
 
 Say "make an invoice for Acme, 12 hours at 90 EUR, due in 14 days" and get a real PDF you can send. This MCP server stores your business profile and your clients, allocates a sequential invoice number that is never reused, computes the subtotal, any discount, one tax line per VAT rate and the total in integer minor units, and renders an A4 PDF with your issuer and payment details, a wrapping item table and a proper totals block. It also tracks payments and, on Pro, reports what is overdue and by how many days. Everything is stored in plain JSON files on your own machine; nothing is uploaded anywhere.
 
