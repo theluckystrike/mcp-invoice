@@ -20,8 +20,8 @@ its own, the built package is vendored into `vendor/mcp-license/` and `package.j
 depends on it through a `file:` path. So a fresh clone works with no extra setup:
 
 ```sh
-git clone https://github.com/theluckystrike/mcp-invoice.git
-cd mcp-invoice
+git clone https://github.com/theluckystrike/mcp-invoice-generator.git
+cd mcp-invoice-generator
 npm install && npm run build && npm test
 ```
 

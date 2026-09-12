@@ -17,8 +17,8 @@ If your client cannot set headers, put the token in the path instead: `https://m
 **From source.** The mirror is self-contained: every `@theluckystrike/*` dependency is vendored, so a fresh clone builds with no extra setup.
 
 ```sh
-git clone https://github.com/theluckystrike/mcp-invoice.git
-cd mcp-invoice
+git clone https://github.com/theluckystrike/mcp-invoice-generator.git
+cd mcp-invoice-generator
 npm install && npm run build
 ```
 
@@ -29,13 +29,13 @@ Then point your client at the built entry point:
   "mcpServers": {
     "invoice": {
       "command": "node",
-      "args": ["/absolute/path/to/mcp-invoice/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-invoice-generator/dist/index.js"]
     }
   }
 }
 ```
 
-> `@theluckystrike/mcp-invoice` is **not published on npm yet**, so an `npx -y @theluckystrike/mcp-invoice` command will fail. The three paths above are the working ones and each is exercised by CI.
+> `@theluckystrike/mcp-invoice-generator` is **not published on npm yet**, so an `npx -y @theluckystrike/mcp-invoice-generator` command will fail. The three paths above are the working ones and each is exercised by CI.
 
 ![invoice demo](https://raw.githubusercontent.com/theluckystrike/mcp-servers/main/assets/demo-invoice.gif)
 
@@ -261,7 +261,7 @@ All data stays local, in `${XDG_DATA_HOME:-~/.local/share}/mcp-servers/invoice/`
 - [mcp-time-tracker](../time-tracker/README.md) -- `invoice_summary` output there maps directly onto `invoice_create` line items here.
 - [mcp-spreadsheet](../spreadsheet/README.md) -- pull line items or client lists out of a sheet before invoicing.
 - [mcp-price-tracker](../price-tracker/README.md) -- invoice a client for something you tracked the price of.
-- [office-suite](../office-suite/README.md) -- all four servers behind one install, one config entry.
+- [office-suite](../office-suite/README.md) -- every sibling server behind one install, one config entry.
 - Guide: [Create an invoice PDF from a chat message with an MCP server](https://mcp.zovo.one/guides/invoice-pdf-from-chat)
 
 ## FAQ
